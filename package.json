@@ -1,0 +1,19 @@
+{
+  "name": "shorttermemail-frontend",
+  "version": "1.0.0",
+  "description": "ShortTermEmail.com Frontend - Free Temporary Email Service",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "vite": "^5.0.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  },
+  "homepage": "https://shorttermemail.com"
+}
