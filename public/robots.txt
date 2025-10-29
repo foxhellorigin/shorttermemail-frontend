@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shorttermemail.com/sitemap.xml
+
+# ShortTermEmail.com - Temporary Email Service
