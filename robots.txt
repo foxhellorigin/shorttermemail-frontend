@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Allow: /ar.html
-Disallow: /api/
-
-Sitemap: https://shorttermemail.com/sitemap.xml
-
-# ShortTermEmail.com - Temporary Email Service
-# خدمة البريد الإلكتروني المؤقت المجانية
