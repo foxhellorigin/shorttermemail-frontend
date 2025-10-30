@@ -1,279 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShortTermEmail - خدمة البريد الإلكتروني المؤقت المجانية</title>
-    <meta name="description" content="خدمة بريد إلكتروني مؤقت مجانية. احصل على عناوين بريد إلكتروني تستخدم لمرة واحدة وتدوم لمدة 24 ساعة. لا حاجة للتسجيل. حمي خصوصيتك مع ShortTermEmail.com">
-    <meta name="keywords" content="بريد إلكتروني مؤقت, بريد إلكتروني يستخدم لمرة واحدة, بريد إلكتروني مجاني, بريد إلكتروني قصير المدى, بريد مؤقت, خصوصية, الحماية من البريد المزعج">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="ShortTermEmail - خدمة البريد الإلكتروني المؤقت المجانية">
-    <meta property="og:description" content="احصل على عناوين بريد إلكتروني مؤقتة مجانية تنتهي صلاحيتها تلقائياً بعد 24 ساعة. مثالية للتسجيلات والتحقق.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shorttermemail.com/ar.html">
-    <meta property="og:image" content="https://shorttermemail.com/og-image.png">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Preload -->
-    <link rel="dns-prefetch" href="//api.shorttermemail.com">
-    
-    <!-- Language switcher -->
-    <link rel="alternate" hreflang="ar" href="https://shorttermemail.com/ar.html" />
-    <link rel="alternate" hreflang="en" href="https://shorttermemail.com/" />
-    <link rel="alternate" hreflang="x-default" href="https://shorttermemail.com/" />
-</head>
-<body>
-    <div class="container">
-        <!-- Language Switcher -->
-        <div class="language-switcher">
-            <button class="lang-btn" data-lang="en">English</button>
-            <button class="lang-btn active" data-lang="ar">العربية</button>
-        </div>
-
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>📧 ShortTermEmail</h1>
-                <p class="tagline">خدمة البريد الإلكتروني المؤقت المجانية - احمِ خصوصيتك</p>
-                <div class="domain-badges">
-                    <span class="domain-badge">@shorttermemail.com</span>
-                    <span class="domain-badge">@mail.shorttermemail.com</span>
-                    <span class="domain-badge">@inbox.shorttermemail.com</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Email Generator Section -->
-            <section class="email-generator-section">
-                <div class="card generator-card">
-                    <h2>احصل على عنوان بريدك الإلكتروني المؤقت</h2>
-                    <p class="card-description">
-                        أنشئ عنوان بريد إلكتروني يستخدم لمرة واحدة ينتهي تلقائياً خلال 24 ساعة.
-                        لا حاجة للتسجيل - مجاني تماماً ومجهول.
-                    </p>
-                    
-                    <div class="api-status">
-                        <span id="apiStatus" class="status-checking">جاري التحقق من حالة الخدمة...</span>
-                    </div>
-                    
-                    <div class="generator-actions">
-                        <button id="generateEmailBtn" class="btn-primary large">
-                            <span class="btn-text">إنشاء بريد إلكتروني جديد</span>
-                            <span class="btn-loader hidden">جاري الإنشاء...</span>
-                        </button>
-                    </div>
-
-                    <div id="emailDisplay" class="email-display hidden">
-                        <div class="email-address-container">
-                            <div class="email-address">
-                                <span id="currentEmail" class="email-text"></span>
-                                <div class="email-actions">
-                                    <button id="copyEmailBtn" class="btn-secondary" title="نسخ إلى الحافظة">
-                                        📋 نسخ
-                                    </button>
-                                    <button id="refreshBtn" class="btn-secondary" title="تحديث البريد الوارد">
-                                        🔄 تحديث
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="email-info">
-                                <span id="emailExpiry" class="expiry-info"></span>
-                                <span id="emailCount" class="count-info">الرسائل: 0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Inbox Section -->
-            <section class="inbox-section">
-                <div class="card">
-                    <div class="inbox-header">
-                        <h3>البريد الوارد</h3>
-                        <div class="inbox-controls">
-                            <span id="unreadCount" class="badge hidden">0</span>
-                            <button id="clearInbox" class="btn-secondary small" title="مسح كل الرسائل">
-                                🗑️ مسح
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div id="loadingIndicator" class="loading hidden">
-                        <div class="spinner"></div>
-                        جاري تحميل الرسائل...
-                    </div>
-                    
-                    <div id="noEmails" class="empty-state">
-                        <div class="empty-icon">📭</div>
-                        <h4>لا توجد رسائل بعد</h4>
-                        <p>بريدك الإلكتروني المؤقت جاهز لاستقبال الرسائل. شارك عنوان بريدك الإلكتروني لبدء استقبال الرسائل.</p>
-                    </div>
-                    
-                    <div id="emailsList" class="emails-list"></div>
-                </div>
-            </section>
-
-            <!-- Features Section -->
-            <section class="features-section">
-                <div class="card">
-                    <h3>لماذا تختار ShortTermEmail؟</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">🛡️</div>
-                            <h4>حماية الخصوصية</h4>
-                            <p>احمِ بريدك الإلكتروني الشخصي وتجنب البريد المزعج. لا حاجة لمعلومات شخصية.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">⚡</div>
-                            <h4>إعداد فوري</h4>
-                            <p>احصل على عنوان بريد إلكتروني جديد في ثوانٍ. لا تسجيل، لا كلمات مرور، لا التزامات.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">⏰</div>
-                            <h4>مدة 24 ساعة</h4>
-                            <p>تنتهي صلاحية الرسائل تلقائياً بعد 24 ساعة. مثالية للتسجيلات المؤقتة والتحقق.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📱</div>
-                            <h4>متوافق مع الجوال</h4>
-                            <p>يعمل بشكل مثالي على جميع الأجهزة والمتصفحات. تصميم متجاوب لأفضل تجربة مستخدم.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔒</div>
-                            <h4>آمن ومضمون</h4>
-                            <p>جميع الرسائل تُحذف تلقائياً. لا يتم تخزين البيانات بشكل دائم على خوادمنا.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🌐</div>
-                            <h4>نطاقات متعددة</h4>
-                            <p>اختر من بين نطاقات متعددة: shorttermemail.com, mail.shorttermemail.com, والمزيد.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How It Works Section -->
-            <section class="how-it-works-section">
-                <div class="card">
-                    <h3>كيف تعمل الخدمة</h3>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>إنشاء البريد الإلكتروني</h4>
-                                <p>انقر على "إنشاء بريد إلكتروني جديد" لإنشاء عنوان بريدك الإلكتروني المؤقت</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>استخدم بريدك الإلكتروني</h4>
-                                <p>استخدم البريد الإلكتروني المنشئ للتسجيلات والتحقق أو أي احتياج مؤقت</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>استقبل الرسائل</h4>
-                                <p>شاهد ظهور الرسائل في بريدك الوارد في الوقت الفعلي</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <h4>انتهاء تلقائي</h4>
-                                <p>بريدك الإلكتروني وجميع الرسائل تُحذف تلقائياً بعد 24 ساعة</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h4>📧 ShortTermEmail</h4>
-                    <p>خدمة بريد إلكتروني مؤقت مجانية لحماية خصوصيتك على الإنترنت.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h5>الخدمة</h5>
-                        <a href="https://api.shorttermemail.com/api/health" target="_blank">الحالة</a>
-                        <a href="https://api.shorttermemail.com/api/info" target="_blank">معلومات API</a>
-                        <a href="https://api.shorttermemail.com/api/stats" target="_blank">الإحصائيات</a>
-                    </div>
-                    <div class="footer-section">
-                        <h5>النطاقات</h5>
-                        <span>@shorttermemail.com</span>
-                        <span>@mail.shorttermemail.com</span>
-                        <span>@inbox.shorttermemail.com</span>
-                    </div>
-                    <div class="footer-section">
-                        <h5>اللغة</h5>
-                        <a href="/">English</a>
-                        <a href="/ar.html">العربية</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 ShortTermEmail.com - خدمة البريد الإلكتروني المؤقت المجانية</p>
-                <p class="disclaimer">
-                    توفر هذه الخدمة عناوين بريد إلكتروني مؤقتة لأغراض الاختبار والخصوصية.
-                    يتم حذف الرسائل تلقائياً بعد 24 ساعة. يرجى الاستخدام المسؤول.
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Email Modal -->
-    <div id="emailModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalSubject">موضوع الرسالة</h3>
-                <button id="closeModal" class="close-btn" title="إغلاق">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="email-meta">
-                    <div class="meta-item">
-                        <strong>من:</strong> <span id="modalFrom"></span>
-                    </div>
-                    <div class="meta-item">
-                        <strong>إلى:</strong> <span id="modalTo"></span>
-                    </div>
-                    <div class="meta-item">
-                        <strong>التاريخ:</strong> <span id="modalDate"></span>
-                    </div>
-                </div>
-                <div class="email-content">
-                    <div id="modalBody" class="email-body"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="closeModalBtn" class="btn-primary">إغلاق</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Configuration -->
-    <script>
-        const CONFIG = {
-            API_BASE_URL: 'https://api.shorttermemail.com',
-            SOCKET_URL: 'wss://api.shorttermemail.com',
-            LANGUAGE: 'ar'
-        };
-    </script>
-    
-    <!-- Scripts -->
-    <script src="ar-app.js"></script>
-</body>
-</html>
